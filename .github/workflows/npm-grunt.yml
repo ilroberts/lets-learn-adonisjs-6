@@ -27,3 +27,6 @@ jobs:
       run: |
         npm ci
         node ace build
+
+    - name: Functional tests
+      run: node ace test functional
