@@ -8,8 +8,12 @@
 */
 
 import router from '@adonisjs/core/services/router'
+
 const MoviesController = () => import('#controllers/movies_controller')
 
-router.on('/').render('pages/home')
+router.get('/', [MoviesController, 'index']).as('home')
 
-router.get('/movies', [MoviesController, 'index'])
+router
+  .get('/movies/:slug', [MoviesController, 'show'])
+  .as('movies.show')
+  .where('slug', router.matchers.slug())
